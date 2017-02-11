@@ -1,6 +1,9 @@
 const log = console.log;
+const _ = require('lodash');
 const should = require('chai').should();
-const mod = require('./index');
+const {
+    getPerson
+} = require('./index');
 
 describe('#basic mocha chai', ()=>
 {
@@ -9,7 +12,11 @@ describe('#basic mocha chai', ()=>
         true.should.be.true;
     });
 });
-// describe('#person initial state', ()=>
-// {
-//     it('')
-// });
+describe('#person initial state', ()=>
+{
+    it('getPerson should return a object', ()=>
+    {
+        const result = getPerson();
+        _.isObject(result).should.be.true;
+    });
+});
