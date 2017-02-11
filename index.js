@@ -62,9 +62,9 @@ class Person
         for(var i=0; i<this.equipment.length; i++)
         {
             var item = this.equipment[i];
-            if(item.type === 'armor')
+            if(item instanceof Armor)
             {
-                this.armorBonus += item.type.bonus;
+                this.armorBonus += item.bonus;
             }
         }
     }
@@ -100,8 +100,3 @@ function setupPerson()
 }
 
 setupPerson();
-
-const getPerson = () => person;
-module.exports = {
-    getPerson
-};
