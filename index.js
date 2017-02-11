@@ -100,3 +100,6 @@ function setupPerson()
 }
 
 setupPerson();
+
+getPerson = ()=> person;
+module.exports = {getPerson};
