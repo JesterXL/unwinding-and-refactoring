@@ -1,6 +1,6 @@
 class Person
 {
-    constructor(name, strength, dexterity, constitution)
+    constructor(name, strength, dexterity, constitution, equipment)
     {
         this.name = name;
         this.strength = strength;
@@ -97,7 +97,7 @@ function setupPerson()
 {
     var leatherArmor = new Armor("Leather", 2);
     var shortSword = new Weapon("Short Sword", 0, 1, 6)
-    person = new Person('McFly Bojo', 2, 4, 1);
+    person = new Person('McFly Bojo', 2, 4, 1, [leatherArmor, shortSword]);
 }
 
 setupPerson();
