@@ -85,7 +85,6 @@ class Weapon
     {
         this.name = name;
         this.bonsu = bonsu;
-        this.damage = damage;
         this.damageDieAmount = damageDieAmount;
         this.damageDieType = damageDieType;
     }
