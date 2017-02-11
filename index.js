@@ -102,4 +102,5 @@ function setupPerson()
 setupPerson();
 
 getPerson = ()=> person;
-module.exports = {getPerson};
+getPersonClass = ()=> Person;
+module.exports = {getPerson, getPersonClass}
