@@ -19,4 +19,9 @@ describe('#person initial state', ()=>
         const result = getPerson();
         _.isObject(result).should.be.true;
     });
+    it('initial armor bonus is 0', ()=>
+    {
+        const result = getPerson();
+        result.armorBonus.should.equal(0);
+    });
 });
