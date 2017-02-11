@@ -100,3 +100,8 @@ function setupPerson()
 }
 
 setupPerson();
+
+const getPerson = () => person;
+module.exports = {
+    getPerson
+};
