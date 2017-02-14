@@ -24,7 +24,7 @@ class Person
 
     attack(target)
     {
-        var  roll = Person.rollDice(1, 20);
+        var roll = Person.rollDice(1, 20);
         roll += this.strength;
         roll = _.clamp(roll, 1, 20);
         var toHit = 10 + target.armorBonus + target.dexterity;
@@ -102,5 +102,4 @@ function setupPerson()
 setupPerson();
 
 getPerson = ()=> person;
-getPersonClass = ()=> Person;
-module.exports = {getPerson, getPersonClass}
+module.exports = {getPerson, Person, Armor, Weapon}

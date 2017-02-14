@@ -2,7 +2,10 @@ const log = console.log;
 const _ = require('lodash');
 const should = require('chai').should();
 const {
-    getPerson
+    getPerson,
+    Person,
+    Armor,
+    Weapon
 } = require('./index');
 describe('#basic mocha chai', ()=>
 {
@@ -25,9 +28,65 @@ describe("#index initial conditions", ()=>
         // FIXME: should be 2 by default using leatherArmor,
         // fix is to not reset armorBonus to 0
     });
-    it('check rollDice', ()=>
+});
+describe('#Person', ()=>
+{
+    describe("#rollDice", ()=>
     {
-        const person = getPerson();
-        log("person:", person);   
+        it("should return a finite number (not NaN nor Infinity)", ()=>
+        {
+            const number = Person.rollDice(1, 20);
+            _.isFinite(number).should.be.true;
+        });
+        it("in a 10,000 sample size, we unfortunately get 0s", ()=>
+        {
+            const sample = new Array(10000);
+            _.fill(sample, 0);
+            const rollDiceSamples = _.map(sample, item => Person.rollDice(1, 20));
+            const anyZeros = _.filter(rollDiceSamples, item => item === 0);
+            anyZeros.length.should.not.equal(0);
+        });
+    });
+    describe.only('#attack', ()=>
+    {
+        var personA;
+        var personB;
+        var createPersonFixture = (name)=>
+        {
+            var leatherArmor = new Armor("Leather", 2);
+            var shortSword = new Weapon("Short Sword", 0, 1, 6)
+            return new Person(name, 2, 4, 1, [leatherArmor, shortSword]);
+        };
+        beforeEach(()=>
+        {
+            personA = createPersonFixture('Person A');
+            personB = createPersonFixture('Person B');
+        });
+
+        afterEach(()=>
+        {
+            personA = undefined;
+            personB = undefined;
+        });
+
+        it("personA's hitpoints start at 11", ()=>
+        {
+            personA.hitPoints.should.equal(11);
+        });
+        it("personB's hitpoints start at 11", ()=>
+        {
+            personB.hitPoints.should.equal(11);
+        });
+        it("personA's armorBonus is 0 sadly", ()=>
+        {
+            personA.armorBonus.should.equal(0);
+        });
+        it("personB's armorBonus is 0 sadly", ()=>
+        {
+            personB.armorBonus.should.equal(0);
+        });
+
+
+
     });
 });
