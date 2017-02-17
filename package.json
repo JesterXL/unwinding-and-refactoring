@@ -8,10 +8,13 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "test": "mocha index.test.js"
+    "test": "mocha index.test.js",
+    "coverage": "istanbul cover _mocha index.test.js -x *.test.js",
+    "showcoverage": "open coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",

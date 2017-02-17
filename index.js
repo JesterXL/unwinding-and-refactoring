@@ -28,7 +28,7 @@ class Person
         roll += this.strength;
         roll = _.clamp(roll, 1, 20);
         var toHit = 10 + target.armorBonus + target.dexterity;
-        return result >= toHit;
+        return roll >= toHit;
     }
 
     addEquipment(item)

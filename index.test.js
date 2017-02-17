@@ -47,7 +47,7 @@ describe('#Person', ()=>
             anyZeros.length.should.not.equal(0);
         });
     });
-    describe.only('#attack', ()=>
+    describe('#attack', ()=>
     {
         var personA;
         var personB;
@@ -85,7 +85,18 @@ describe('#Person', ()=>
         {
             personB.armorBonus.should.equal(0);
         });
-
+        it("if I add a boomstick to my equipment, it's in the equipement array", ()=>
+        {
+            const boomStick = new Weapon('Boom Stick', 0, 1, 12);
+            personA.addEquipment(boomStick);
+            personA.equipment.should.include(boomStick);
+        });
+        it('if I add hotpants to PersonA, he becomes awessauce... and has an armorBonus of 3', ()=>
+        {
+            const hotPants = new Armor('Hawt Pawwwnts', 1);
+            personA.addEquipment(hotPants);
+            personA.armorBonus.should.equal(3);
+        });
 
 
     });
