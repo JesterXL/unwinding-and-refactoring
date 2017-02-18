@@ -5,8 +5,13 @@ const {
     getPerson,
     Person,
     Armor,
-    Weapon
+    Weapon,
+    getRandomNumber,
+    rollDice,
+    getNotARandomNumber,
+    attack
 } = require('./index');
+
 describe('#basic mocha chai', ()=>
 {
     it('should be true', ()=>
@@ -97,7 +102,63 @@ describe('#Person', ()=>
             personA.addEquipment(hotPants);
             personA.armorBonus.should.equal(3);
         });
-
-
     });
 });
+
+describe('#getRandomNumber', ()=>
+{
+    it('should return a finite number', ()=>
+    {
+        const result = getRandomNumber();
+        _.isFinite(result).should.be.true;
+    });
+});
+describe('#rollDice', ()=>
+{
+    it('should return a finite number', ()=>
+    {
+        const result = rollDice(1, 20);
+        _.isFinite(result).should.be.true;
+    });
+    it('should NOT be a random number of if we use 1', ()=>
+    {
+        const result = rollDice(1, 20, getNotARandomNumber);
+        result.should.equal(20);
+    });
+});
+describe('#getNotARandomNumber', ()=>
+{
+    it('should return a 1', ()=>
+    {
+        const result = getNotARandomNumber();
+        result.should.equal(1);
+    });
+});
+describe('#attack', ()=>
+{
+    it.only('should always be a hit if 20 is rolled', ()=>
+    {
+        const rollDice = ()=> 20;
+        const result = attack(
+            rollDice,
+            getNotARandomNumber,
+            0,
+            0,
+            0
+        );
+        result.hit.should.be.true;
+    });
+});
+
+// const attack = (rollDice, 
+//     randomNumberGenerator, 
+//     attackersStrength, 
+//     targetArmorBonus, 
+//     targetDexterity)=>
+// {
+//     let roll = rollDice(1, 20, randomNumberGenerator);
+//     roll += attackersStrength;
+//     roll = _.clamp(roll, 1, 20);
+//     const toHit = 10 + targetArmorBonus + targetDexterity;
+//     return roll >= toHit;
+// };
